@@ -1,0 +1,23 @@
+{
+  "trailing_window": 63,
+  "quantiles": [
+    0.33,
+    0.67
+  ],
+  "lower_threshold": 3.970519046899656e-05,
+  "upper_threshold": 9.2258529565956e-05,
+  "regime_names": [
+    "Low",
+    "Medium",
+    "High"
+  ],
+  "statistic": "mean",
+  "observations_total": 5016,
+  "observations_labeled": 4954,
+  "regime_counts": {
+    "Low": 1635,
+    "Medium": 1684,
+    "High": 1635
+  },
+  "separation_ratio": 7.287364532734639
+}

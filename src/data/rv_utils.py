@@ -68,6 +68,47 @@ def load_oxford_man_rv(
     return df
 
 
+def load_processed_rv(
+    filepath: Path,
+    date_column: str = None,
+) -> pd.DataFrame:
+    """
+    Load processed realized volatility data from CSV.
+    
+    This function loads data that has already been processed and saved
+    by earlier notebooks (e.g., NB00).
+    
+    Parameters
+    ----------
+    filepath : Path
+        Path to the processed CSV file
+    date_column : str, optional
+        Name of date column if not using index
+        
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with date index and processed columns
+        
+    Examples
+    --------
+    >>> from pathlib import Path
+    >>> df = load_processed_rv(Path("../data/processed/realized_volatility.csv"))
+    """
+    logger.info(f"Loading processed RV data from {filepath}")
+    
+    # Load CSV with date index
+    df = pd.read_csv(filepath, index_col=0, parse_dates=True)
+    
+    # Ensure index is datetime
+    if not isinstance(df.index, pd.DatetimeIndex):
+        df.index = pd.to_datetime(df.index)
+    
+    logger.info(f"Loaded {len(df)} observations from {df.index.min()} to {df.index.max()}")
+    
+    return df
+
+
 def extract_rv_series(
     df: pd.DataFrame,
     rv_col: str = 'rv5',
